@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dubbo.com.dubbo.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.dubbo.pojo.Order">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="oid" jdbcType="INTEGER" property="oid" />
+    <result column="oname" jdbcType="VARCHAR" property="oname" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    oid, oname, price
+  </sql>
+</mapper>

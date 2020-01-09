@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<form>
+    <tr>
+        <td>
+            商品编号:${shop.sid}
+        </td>
+        <br>
+        <td>
+            商品名称:${shop.sname}
+        </td>
+        <br>
+        <td>
+            商品单价:${shop.price}
+        </td>
+        <br>
+        <td>
+            商品库存:${shop.num}
+        </td>
+        <td>
+            商品状态:${shop.state}
+        </td>
+    </tr>
+</form>
+</body>
+</html>

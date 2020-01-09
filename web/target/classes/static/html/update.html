@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="../js/angular.js"></script>
+    <script src="../js/jquery.min.js"></script>
+
+    <script>
+        var app = angular.module("listApp",[]);
+        app.config(['$locationProvider',function ($locationProvider) {
+            $locationProvider.html5Mode({
+                enabled:true,
+                requireBase:false
+            })
+        }])
+        app.controller("listCtrl",function ($scope,$http,$location) {
+
+
+            $scope.sid=$location.search().sid;
+            $http.get("/findOne?sid="+$scope.sid).then(
+                function (response) {
+                    $scope.area=response.data;
+                }
+            )
+        })
+    </script>
+
+
+</head>
+<body ng-app="listApp" ng-controller="listCtrl">
+<table>
+    <tr>
+        <td>
+
+                 <input type="hidden" ng-model="area.sid">
+            商品名称:<input type="text" ng-model="area.sname" value="{{area.sname}}" style="border-style:none"><br>
+            商品库存:<input type="text" ng-model="area.num" value="{{area.num}}" style="border-style:none"><br>
+            商品单价:<input type="text" ng-model="area.price" value="{{area.price}}" style="border-style:none"><br>
+            <input type="button" value="修改" ng-click="updateShop()">
+        </td>
+    </tr>
+</table>
+</body>
+</html>
+

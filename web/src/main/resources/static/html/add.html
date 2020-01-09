@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加新地址</title>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/angular.js"></script>
+
+</head>
+<body ng-app="listApp" ng-controller="listCtrl">
+
+名称：<input id="sname" type="text" ng-model="area.sname">
+单价：<input id="price" type="text" ng-model="area.price">
+库存：<input id="num" type="text" ng-model="area.num">
+
+<input type="button" value="添加" ng-click="addShop()">
+<script>
+    var app = angular.module("listApp",[]);
+    app.controller("listCtrl",function ($http,$scope) {
+        $scope.addShop = function () {
+            $http.post("/add",$scope.area).then(
+                function (response) {
+                    if (response.data.success){
+                        alert("ssss");
+                        alert(response.data.message);
+                        window.location.href="list.html";
+                    }else{
+                        alert(response.data.message);
+                    }
+                }
+            )
+
+        }
+
+    })
+
+</script>
+</body>
+</html>

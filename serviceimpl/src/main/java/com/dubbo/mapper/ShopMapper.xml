@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dubbo.com.dubbo.mapper.ShopMapper">
+  <resultMap id="BaseResultMap" type="com.dubbo.pojo.Shop">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="sid" jdbcType="INTEGER" property="sid" />
+    <result column="sname" jdbcType="VARCHAR" property="sname" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    sid, sname, price, num, state
+  </sql>
+</mapper>

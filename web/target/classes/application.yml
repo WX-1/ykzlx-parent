@@ -1,0 +1,19 @@
+# tomcat默认的端口8080
+# http协议访问服务器默认的端口是80
+server:
+  port: 8080
+dubbo:
+  application:
+    name: controller
+  registry:
+    address: zookeeper://127.0.0.1:2181
+spring:
+  datasource:
+    driver: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yklx?serverTimezone=UTC
+    username: root
+    password: 1
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    cache: false

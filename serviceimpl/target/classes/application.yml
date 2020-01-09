@@ -1,0 +1,19 @@
+server:
+  port: 8081
+dubbo:
+  application:
+    name: serviceimpl
+  registry:
+    address: zookeeper://127.0.0.1:2181
+spring:
+  datasource:
+    driver: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yklx?serverTimezone=UTC
+    username: root
+    password: 1
+logging:
+  level:
+    com.ssbm.dubbo.mapper.*: debug
+  redis:
+    host: localhost
+    port: 6379

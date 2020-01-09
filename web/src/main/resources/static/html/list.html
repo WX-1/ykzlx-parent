@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查询地址</title>
+    <script src="../js/angular.js"></script>
+    <script src="../js/jquery.min.js"></script>
+
+
+</head>
+<body ng-app="listApp" ng-controller="listCtrl" ng-init="listpage(1)">
+名称：<input type="text" ng-model="province"/> <input type="button" value="查询" ng-click="listpage(1)"/>
+<table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+    <div>
+
+        <tr>
+            <td>id</td>
+            <td>名称</td>
+            <td>单价</td>
+            <td>库存</td>
+            <td>状态</td>
+            <td>操作
+                <a href="add.html">添加</a>
+            </td>
+        </tr>
+        <tr ng-repeat="area in areas">
+            <td>{{area.sid}}</td>
+            <td>{{area.sname}}</td>
+            <td>{{area.price}}</td>
+            <td>{{area.num}}</td>
+            <td>{{area.state}}</td>
+            <td>
+                <input type="button" value="上架" data-toggle="modal" ng-click="shangjia(area.sid)" ng-if="area.state==2">
+                <input type="button" value="下架" data-toggle="modal" ng-click="xiajia(area.sid)" ng-if="area.state==1">
+                <input type="button" value="删除" data-toggle="modal" ng-click="delete(area.id)">
+                <a href="update.html?sid={{area.sid}}">购买</a>
+                <input type="button" value="批量删除" class="btn btn-default" title="批量删除" ng-click="deleteAddress()"><i
+                    class="fa fa-trash-o"></i>
+                <a href="upload.html?id={{area.id}}">上传</a>
+            </td>
+        </tr>
+    </div>
+    <tr>
+        <td class="text-center" colspan="7">
+            <input type="button" value="首页" ng-click="listpage(1)"/>
+            <input type="button" value="上一页" ng-click="listpage(pageInfo.prePage)"/>
+            <span ng-repeat="n in pageInfo.navigatepageNums">
+                <input type="button" value="{{n}}" ng-click="listpage(n)"/>
+            </span>
+            <input type="button" value="下一页" ng-click="listpage(pageInfo.nextPage)"/>
+            <input type="button" value="尾页" ng-click="listpage(pageInfo.pages)"/>
+        </td>
+    </tr>
+</table>
+</div>
+
+</body>
+<script>
+    var app = angular.module("listApp",[]);
+    app.controller("listCtrl",function ($scope,$http) {
+        $scope.listpage = function (pageNum) {
+            var sname = $scope.sname==undefined?"":$scope.sname;
+            $http.get("/list?sname="+sname+"&pageNum="+pageNum+"&pageSize=3").then(
+                function (response) {
+                    var pageInfo = response.data;
+                    $scope.areas = pageInfo.list;
+                    $scope.pageInfo = pageInfo;
+                }
+            )
+        }
+        $scope.shangjia = function (sid) {
+            $http.get("/shangjia?sid="+sid).then(
+                function (response) {
+                    $scope.area = response.data;
+                    window.location.href="list.html";
+                }
+            )
+        }
+        $scope.xiajia = function (sid) {
+            $http.get("/xiajia?sid="+sid).then( 
+                function (response) {
+                    $scope.area = response.data;
+                    window.location.href="list.html";
+                }
+            )
+        }
+        
+    })
+
+
+</script>
